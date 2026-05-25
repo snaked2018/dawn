@@ -1,0 +1,198 @@
+{% render 'growmodo-hero-banner-css' %}
+
+<div class="growmodo-{{ section.id }}-container">
+    <div class="growmodo-hero-banner__wrapper">
+        <div class="growmodo-hero-banner__content">
+            <h1>
+                {{ section.settings.title }}
+            </h1>
+            <div class="growmodo-hero-banner__description">
+                {{ section.settings.description }}
+            </div>
+            <div class="growmodo-hero-banner__buttons button">
+                <a href="{{ section.settings.button_link }}" class="growmodo-hero-banner__button">
+                    {{ section.settings.button_label }}
+                </a>
+            </div>
+            
+            {%- assign trust_card_blocks = section.blocks | where: 'type', 'trust_card' -%}
+            {%- if trust_card_blocks.size > 0 -%}
+                <div class="growmodo-hero-banner__trust-cards">
+                    {%- for block in trust_card_blocks -%}
+                        {%- if block.type == 'trust_card' -%}
+                            <div
+                                class="growmodo-hero-banner__trust-card"
+                                {{ block.shopify_attributes }}
+                            >
+                                <div class="growmodo-hero-banner__trust-card-content">
+                                    {%- if block.settings.value != blank -%}
+                                        <span class="growmodo-hero-banner__trust-card-value">{{ block.settings.value }}</span>
+                                    {%- endif -%}
+                                    {%- if block.settings.label != blank -%}
+                                        <span class="growmodo-hero-banner__trust-card-label">{{ block.settings.label }}</span>
+                                    {%- endif -%}
+                                </div>
+                            </div>
+                        {%- endif -%}
+                    {%- endfor -%}
+                </div>
+            {%- endif -%}
+        </div>
+        <div
+            class="growmodo-hero-banner__image"
+            {% if section.settings.image != blank %}
+                role="img"
+                aria-label="{{ section.settings.title | escape }}"
+                loading="lazy"
+            {% endif %}
+        >
+            {% if section.settings.image == blank %}
+                {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+            {% endif %}
+            {%- for block in section.blocks -%}
+                {%- if block.type == 'diamond' -%}
+                    <div
+                        class="growmodo-hero-banner__diamond growmodo-hero-banner__diamond--{{ block.id }}"
+                        {{ block.shopify_attributes }}
+                    >
+                        <span class="growmodo-hero-banner__diamond-icon" aria-hidden="true">
+                            {{- 'diamond.svg' | inline_asset_content -}}
+                        </span>
+                    </div>
+                {%- endif -%}
+            {%- endfor -%}
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Growmodo Hero Banner",
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "FIND CLOTHES THAT MATCHES YOUR STYLE"
+        },
+        {
+            "type": "richtext",
+            "id": "description",
+            "label": "Description",
+            "default": "<p>Browse through our diverse range of meticulously crafted garments, designed to bring out your individuality and cater to your sense of style.</p>"
+        },
+        {
+            "type": "text",
+            "id": "button_label",
+            "label": "Button Label",
+            "default": "Shop Now"
+        },
+        {
+            "type": "url",
+            "id": "button_link",
+            "label": "Button Link",
+            "default": "/collections/all"
+        },
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+        },
+        {
+            "type": "header",
+            "content": "Image settings",
+            "info": "Adjust the image position to the desired location."
+        },
+        {
+            "type": "range",
+            "id": "image_position_x",
+            "label": "Horizontal position (%)",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "unit": "%",
+            "default": 50
+        },
+        {
+            "type": "range",
+            "id": "image_position_y",
+            "label": "Vertical position (%)",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "unit": "%",
+            "default": 50
+        }
+    ],
+    "blocks": [
+        {
+            "type": "trust_card",
+            "name": "Trust card",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "value",
+                    "label": "Value",
+                    "default": "200+"
+                },
+                {
+                    "type": "text",
+                    "id": "label",
+                    "label": "Label",
+                    "default": "International Brands"
+                }
+            ]
+        },
+        {
+            "type": "diamond",
+            "name": "Diamond",
+            "settings": [
+                {
+                    "type": "range",
+                    "id": "position_x",
+                    "label": "Horizontal position",
+                    "min": 0,
+                    "max": 100,
+                    "step": 1,
+                    "unit": "%",
+                    "default": 50
+                },
+                {
+                    "type": "range",
+                    "id": "position_y",
+                    "label": "Vertical position",
+                    "min": 0,
+                    "max": 100,
+                    "step": 1,
+                    "unit": "%",
+                    "default": 50
+                },
+                {
+                    "type": "range",
+                    "id": "size",
+                    "label": "Size",
+                    "min": 24,
+                    "max": 200,
+                    "step": 4,
+                    "unit": "px",
+                    "default": 104
+                }
+            ]
+        }
+    ],
+    "max_blocks": 12,
+    "presets": [
+        {
+            "name": "Growmodo Hero Banner",
+            "blocks": [
+                {
+                    "type": "trust_card"
+                },
+                {
+                    "type": "diamond"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

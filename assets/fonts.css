@@ -1,0 +1,9 @@
+@font-face {
+    font-family: "Satoshi";
+    src: url(satoshi-regular.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: "IntegralCF";
+    src: url(integralcf-demibold.otf) format("opentype");
+}
