@@ -1,0 +1,63 @@
+{% comment %}
+  Growmodo bento style card
+
+  Accepts:
+  - block: {Object} Section block
+  - card_radius: {Number} px
+{% endcomment %}
+
+{%- liquid
+  assign card_bg_url = blank
+  if block.settings.image != blank
+    assign card_bg_url = block.settings.image | image_url: width: 1200
+    assign card_image_alt = block.settings.label | escape
+    if block.settings.image.alt != blank
+      assign card_image_alt = block.settings.image.alt | escape
+    endif
+  endif
+-%}
+
+<div
+  class="growmodo-bento-collection__item growmodo-bento-collection__item--{{ block.settings.size }}"
+  {{ block.shopify_attributes }}
+>
+  {%- if block.settings.link != blank -%}
+    <a href="{{ block.settings.link }}" class="growmodo-bento-collection__card">
+  {%- else -%}
+    <div class="growmodo-bento-collection__card">
+  {%- endif -%}
+
+    {%- if block.settings.label != blank -%}
+      <h3 class="growmodo-bento-collection__label">{{ block.settings.label | escape }}</h3>
+    {%- endif -%}
+
+    <div
+      class="growmodo-bento-collection__media{% if card_bg_url != blank %} growmodo-bento-collection__media--has-image{% endif %}"
+      style="--growmodo-bento-radius: {{ card_radius }}px;{% if card_bg_url != blank %} --growmodo-bento-bg: url({{ card_bg_url }});{% endif %}"
+    >
+      {%- if block.settings.image != blank -%}
+        {%- liquid
+          assign card_image_sizes = '(min-width: 990px) 40vw, (min-width: 750px) 45vw, 80vw'
+          assign card_image_loading = 'lazy'
+        -%}
+        {{
+          block.settings.image
+          | image_url: width: 1200
+          | image_tag:
+            class: 'growmodo-bento-collection__image',
+            widths: '375, 550, 750, 1100, 1200',
+            sizes: card_image_sizes,
+            alt: card_image_alt,
+            loading: card_image_loading
+        }}
+      {%- else -%}
+        {{ 'collection-apparel-1' | placeholder_svg_tag: 'growmodo-bento-collection__placeholder' }}
+      {%- endif -%}
+    </div>
+
+  {%- if block.settings.link != blank -%}
+    </a>
+  {%- else -%}
+    </div>
+  {%- endif -%}
+</div>

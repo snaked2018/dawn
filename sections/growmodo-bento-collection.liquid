@@ -1,0 +1,208 @@
+{% render 'growmodo-bento-collection-css' %}
+
+{%- if section.blocks.size > 0 -%}
+  <div class="growmodo-bento-collection growmodo-{{ section.id }}-container">
+    <div>
+      {%- if section.settings.title != blank -%}
+        <div class="growmodo-bento-collection__header">
+          <h2 class="growmodo-bento-collection__title">{{ section.settings.title | escape }}</h2>
+        </div>
+      {%- endif -%}
+
+      <div class="growmodo-bento-collection__grid">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'style_card' -%}
+            {%- assign block_index = forloop.index0 -%}
+            {%- if block_index == 0 or block_index == 2 -%}
+              <div class="growmodo-bento-collection__row{% if block_index == 2 %} growmodo-bento-collection__row--reverse{% endif %}">
+            {%- endif -%}
+            {% render 'growmodo-bento-card'
+              , block: block
+              , card_radius: section.settings.card_border_radius %}
+            {%- if block_index == 1 or block_index == 3 -%}
+              </div>
+            {%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+  {
+    "name": "growmodo bento collection",
+    "tag": "section",
+    "class": "section-growmodo-bento-collection",
+    "max_blocks": 4,
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "BROWSE BY DRESS STYLE"
+      },
+      {
+        "type": "color",
+        "id": "background_color",
+        "label": "Container background",
+        "default": "#F2F0F1"
+      },
+      {
+        "type": "range",
+        "id": "container_border_radius",
+        "label": "Container corner radius",
+        "min": 0,
+        "max": 40,
+        "step": 2,
+        "unit": "px",
+        "default": 20
+      },
+      {
+        "type": "range",
+        "id": "card_gap",
+        "label": "Gap between cards",
+        "min": 8,
+        "max": 40,
+        "step": 4,
+        "unit": "px",
+        "default": 20
+      },
+      {
+        "type": "range",
+        "id": "card_border_radius",
+        "label": "Card corner radius",
+        "min": 0,
+        "max": 40,
+        "step": 2,
+        "unit": "px",
+        "default": 16
+      },
+      {
+        "type": "range",
+        "id": "card_min_height",
+        "label": "Card minimum height",
+        "min": 200,
+        "max": 500,
+        "step": 10,
+        "unit": "px",
+        "default": 290
+      },
+      {
+        "type": "range",
+        "id": "heading_spacing",
+        "label": "Space below heading",
+        "min": 16,
+        "max": 80,
+        "step": 4,
+        "unit": "px",
+        "default": 40
+      },
+      {
+        "type": "range",
+        "id": "padding",
+        "label": "Container padding",
+        "min": 16,
+        "max": 80,
+        "step": 4,
+        "unit": "px",
+        "default": 32
+      },
+      {
+        "type": "range",
+        "id": "margin_top",
+        "label": "Top margin",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "margin_bottom",
+        "label": "Bottom margin",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "default": 0
+      }
+    ],
+    "blocks": [
+      {
+        "type": "style_card",
+        "name": "Style card",
+        "settings": [
+          {
+            "type": "text",
+            "id": "label",
+            "label": "Label",
+            "default": "Style"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "url",
+            "id": "link",
+            "label": "Link"
+          },
+          {
+            "type": "select",
+            "id": "size",
+            "label": "Card width",
+            "default": "narrow",
+            "options": [
+              {
+                "value": "narrow",
+                "label": "Narrow (1)"
+              },
+              {
+                "value": "wide",
+                "label": "Wide (2)"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "growmodo bento collection",
+        "blocks": [
+          {
+            "type": "style_card",
+            "settings": {
+              "label": "Casual",
+              "size": "narrow"
+            }
+          },
+          {
+            "type": "style_card",
+            "settings": {
+              "label": "Formal",
+              "size": "wide"
+            }
+          },
+          {
+            "type": "style_card",
+            "settings": {
+              "label": "Party",
+              "size": "wide"
+            }
+          },
+          {
+            "type": "style_card",
+            "settings": {
+              "label": "Gym",
+              "size": "narrow"
+            }
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

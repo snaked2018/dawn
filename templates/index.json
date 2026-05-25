@@ -182,7 +182,7 @@
         "collection": "automated-collection",
         "products_to_show": 4,
         "columns_desktop": 4,
-        "slides_per_view_mobile": 115,
+        "slides_per_view_mobile": 130,
         "space_between_mobile": 16,
         "show_rating": true,
         "image_border_radius": 20,
@@ -211,12 +211,71 @@
         "collection": "automated-collection",
         "products_to_show": 4,
         "columns_desktop": 4,
-        "slides_per_view_mobile": 115,
+        "slides_per_view_mobile": 130,
         "space_between_mobile": 16,
         "show_rating": true,
         "image_border_radius": 20,
         "show_view_all": true,
         "view_all_label": "View All"
+      }
+    },
+    "growmodo_bento_collection": {
+      "type": "growmodo-bento-collection",
+      "blocks": {
+        "style_casual": {
+          "type": "style_card",
+          "settings": {
+            "label": "Casual",
+            "image": "shopify://shop_images/image_11.png",
+            "link": "",
+            "size": "narrow"
+          }
+        },
+        "style_formal": {
+          "type": "style_card",
+          "settings": {
+            "label": "Formal",
+            "image": "shopify://shop_images/image_13.png",
+            "link": "",
+            "size": "wide"
+          }
+        },
+        "style_party": {
+          "type": "style_card",
+          "settings": {
+            "label": "Party",
+            "image": "shopify://shop_images/image_12.png",
+            "link": "",
+            "size": "wide"
+          }
+        },
+        "style_gym": {
+          "type": "style_card",
+          "settings": {
+            "label": "Gym",
+            "image": "shopify://shop_images/image_14.png",
+            "link": "",
+            "size": "narrow"
+          }
+        }
+      },
+      "block_order": [
+        "style_casual",
+        "style_formal",
+        "style_party",
+        "style_gym"
+      ],
+      "settings": {
+        "title": "BROWSE BY DRESS STYLE",
+        "background_color": "#f2f0f1",
+        "container_border_radius": 20,
+        "card_gap": 20,
+        "card_border_radius": 16,
+        "card_min_height": 290,
+        "heading_spacing": 40,
+        "padding": 72,
+        "margin_top": 80,
+        "margin_bottom": 80
       }
     }
   },
@@ -226,6 +285,7 @@
     "growmodo_logo_list",
     "growmodo_featured_collection_bJdG8g",
     "growmodo_spacing_border",
-    "growmodo_featured_collection_G8Lk7J"
+    "growmodo_featured_collection_G8Lk7J",
+    "growmodo_bento_collection"
   ]
 }

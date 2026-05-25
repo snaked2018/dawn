@@ -473,7 +473,7 @@
           "settings": {
             "text": {
               "label": "Text",
-              "default": "Welcome to our store"
+              "default": "<p>Welcome to our store</p>"
             },
             "text_alignment": {
               "label": "Text alignment",

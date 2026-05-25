@@ -1,0 +1,180 @@
+<style>
+  .growmodo-{{ section.id }}-container {
+    background-color: {{ section.settings.background_color }};
+    border-radius: {{ section.settings.container_border_radius }}px;
+    padding: {{ section.settings.padding }}px;
+    margin-top: {{ section.settings.margin_top }}px;
+    margin-bottom: {{ section.settings.margin_bottom }}px;
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+
+  .growmodo-bento-collection__header {
+    text-align: center;
+    margin-bottom: {{ section.settings.heading_spacing }}px;
+  }
+
+  .growmodo-bento-collection__title {
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    margin: 0;
+    color: #000;
+  }
+
+  .growmodo-bento-collection__grid {
+    display: flex;
+    flex-direction: column;
+    gap: {{ section.settings.card_gap }}px;
+  }
+
+  .growmodo-bento-collection__row {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    gap: {{ section.settings.card_gap }}px;
+  }
+
+  .growmodo-bento-collection__row--reverse {
+    grid-template-columns: 3fr 2fr;
+  }
+
+  .growmodo-bento-collection__item {
+    min-width: 0;
+  }
+
+  .growmodo-bento-collection__card {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 100%;
+    min-height: {{ section.settings.card_min_height }}px;
+    background-color: #ffffff;
+    border-radius: {{ section.settings.card_border_radius }}px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .growmodo-bento-collection__label {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    z-index: 2;
+    margin: 0;
+    max-width: 45%;
+    font-size: clamp(1.75rem, 2.5vw, 2.25rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #000;
+    pointer-events: none;
+  }
+
+  .growmodo-bento-collection__media {
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    margin-top: auto;
+    overflow: hidden;
+    border-radius: 0 0 var(--growmodo-bento-radius, 16px) var(--growmodo-bento-radius, 16px);
+  }
+
+  .growmodo-bento-collection__image {
+    width: 100%;
+    height: 100%;
+    min-height: {{ section.settings.card_min_height | minus: 40 }}px;
+    object-fit: cover;
+    object-position: center bottom;
+  }
+
+  .growmodo-bento-collection__placeholder {
+    width: 70%;
+    height: 70%;
+    opacity: 0.25;
+  }
+
+  @media screen and (max-width: 749px) {
+    .growmodo-{{ section.id }}-container {
+      padding: 20px;
+      margin-top: {{ section.settings.margin_top | times: 0.75 | round }}px;
+      margin-bottom: {{ section.settings.margin_bottom | times: 0.75 | round }}px;
+      margin-left: 16px;
+      margin-right: 16px;
+    }
+
+    .growmodo-bento-collection__header {
+      margin-bottom: {{ section.settings.heading_spacing | times: 0.75 | round }}px;
+    }
+
+    .growmodo-bento-collection__title {
+      font-size: 32px;
+    }
+
+    .growmodo-bento-collection__row,
+    .growmodo-bento-collection__row--reverse {
+      display: flex;
+      flex-direction: column;
+      gap: {{ section.settings.card_gap }}px;
+    }
+
+    .growmodo-bento-collection__item,
+    .growmodo-bento-collection__item--narrow,
+    .growmodo-bento-collection__item--wide {
+      width: 100%;
+      flex: none;
+    }
+
+    .growmodo-bento-collection__card {
+      display: block;
+      min-height: 260px;
+    }
+
+    .growmodo-bento-collection__label {
+      top: 20px;
+      left: 20px;
+      max-width: 40%;
+      font-size: clamp(1.375rem, 5vw, 1.75rem);
+    }
+
+    .growmodo-bento-collection__media {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 58%;
+      height: auto;
+      min-height: 100%;
+      flex: none;
+      margin-top: 0;
+      border-radius: 0 var(--growmodo-bento-radius, 16px) var(--growmodo-bento-radius, 16px) 0;
+    }
+
+    .growmodo-bento-collection__media--has-image {
+      background-image: var(--growmodo-bento-bg);
+      background-repeat: no-repeat;
+      background-position: right center;
+      background-size: cover;
+    }
+
+    .growmodo-bento-collection__media--has-image .growmodo-bento-collection__image {
+      display: none;
+    }
+
+    .growmodo-bento-collection__media:not(.growmodo-bento-collection__media--has-image) {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .growmodo-bento-collection__media:not(.growmodo-bento-collection__media--has-image) .growmodo-bento-collection__image {
+      width: auto;
+      max-width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: right center;
+    }
+  }
+</style>
