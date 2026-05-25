@@ -1,0 +1,66 @@
+<style>
+  .growmodo-{{ section.id }}-container {
+    background-color: {{ section.settings.background_color }};
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+
+  .growmodo-logo-list__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px 40px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .growmodo-logo-list__item {
+    flex: 0 1 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .growmodo-logo-list__link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+  }
+
+  .growmodo-logo-list__image {
+    width: auto;
+    height: {{ section.settings.logo_height }}px;
+    max-width: min(200px, 100%);
+    object-fit: contain;
+  }
+
+  .growmodo-logo-list__placeholder {
+    width: 120px;
+    height: {{ section.settings.logo_height }}px;
+    opacity: 0.3;
+  }
+
+  @media screen and (max-width: 1024px) {
+    .growmodo-{{ section.id }}-container {
+      padding-top: {{ section.settings.padding_top | times: 0.75 | round }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round }}px;
+    }
+
+    .growmodo-logo-list__list {
+      gap: 34px;
+      justify-content: center;
+    }
+
+    .growmodo-logo-list__image {
+      height: {{ section.settings.logo_height | times: 0.75 | round }}px;
+    }
+
+    .growmodo-logo-list__placeholder {
+      height: {{ section.settings.logo_height | times: 0.75 | round }}px;
+      width: 90px;
+    }
+  }
+</style>

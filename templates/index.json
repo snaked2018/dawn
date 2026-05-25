@@ -115,10 +115,69 @@
         "image_position_x": 50,
         "image_position_y": 20
       }
+    },
+    "growmodo_logo_list": {
+      "type": "growmodo-logo-list",
+      "blocks": {
+        "logo_1": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/versace.svg",
+            "alt": "Versace",
+            "link": ""
+          }
+        },
+        "logo_2": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/zara-logo-1_1.svg",
+            "alt": "Zara",
+            "link": ""
+          }
+        },
+        "logo_3": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/gucci-logo-1_1.svg",
+            "alt": "Gucci",
+            "link": ""
+          }
+        },
+        "logo_4": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/prada-logo-1_1.svg",
+            "alt": "Prada",
+            "link": ""
+          }
+        },
+        "logo_5": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/Group.svg",
+            "alt": "Calvin Klein",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "logo_1",
+        "logo_2",
+        "logo_3",
+        "logo_4",
+        "logo_5"
+      ],
+      "settings": {
+        "background_color": "#000000",
+        "logo_height": 32,
+        "padding_top": 24,
+        "padding_bottom": 24
+      }
     }
   },
   "order": [
     "image_banner",
-    "growmodo_hero_banner_8N8R4U"
+    "growmodo_hero_banner_8N8R4U",
+    "growmodo_logo_list"
   ]
 }
