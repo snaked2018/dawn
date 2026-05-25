@@ -1,11 +1,20 @@
-{
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+ {
   "current": {
     "logo_width": 90,
     "type_header_font": "inter_n7",
     "heading_scale": 100,
     "type_body_font": "inter_n3",
     "body_scale": 100,
-    "page_width": 1400,
+    "page_width": 1900,
     "spacing_sections": 0,
     "spacing_grid_horizontal": 8,
     "spacing_grid_vertical": 8,

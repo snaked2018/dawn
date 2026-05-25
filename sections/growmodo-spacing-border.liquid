@@ -1,0 +1,106 @@
+{% render 'growmodo-spacing-border-css' %}
+
+<div class="growmodo-spacing-border growmodo-{{ section.id }}-container" aria-hidden="true"></div>
+
+{% schema %}
+  {
+    "name": "Growmodo Spacing & Border",
+    "tag": "section",
+    "class": "section-growmodo-spacing-border",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Spacing"
+      },
+      {
+        "type": "range",
+        "id": "margin_top",
+        "label": "Top margin",
+        "min": 0,
+        "max": 120,
+        "step": 4,
+        "unit": "px",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "margin_bottom",
+        "label": "Bottom margin",
+        "min": 0,
+        "max": 120,
+        "step": 4,
+        "unit": "px",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "padding_top",
+        "label": "Top padding",
+        "min": 0,
+        "max": 120,
+        "step": 4,
+        "unit": "px",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "label": "Bottom padding",
+        "min": 0,
+        "max": 120,
+        "step": 4,
+        "unit": "px",
+        "default": 0
+      },
+      {
+        "type": "header",
+        "content": "Border"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_border_top",
+        "label": "Show top border",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "show_border_bottom",
+        "label": "Show bottom border",
+        "default": true
+      },
+      {
+        "type": "range",
+        "id": "border_width",
+        "label": "Border width",
+        "min": 1,
+        "max": 4,
+        "step": 1,
+        "unit": "px",
+        "default": 1
+      },
+      {
+        "type": "range",
+        "id": "border_opacity",
+        "label": "Border opacity",
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "unit": "%",
+        "default": 10
+      }
+    ],
+    "presets": [
+      {
+        "name": "Growmodo Spacing & Border",
+        "settings": {
+          "margin_top": 0,
+          "margin_bottom": 0,
+          "padding_top": 48,
+          "padding_bottom": 48,
+          "show_border_bottom": true,
+          "border_opacity": 10
+        }
+      }
+    ]
+  }
+{% endschema %}

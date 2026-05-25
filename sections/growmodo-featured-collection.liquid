@@ -1,0 +1,218 @@
+{{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
+{% render 'growmodo-featured-collection-css' %}
+
+<script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'growmodo-featured-collection.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid
+  assign collection = section.settings.collection
+  assign products_to_show = section.settings.products_to_show
+  assign show_rating = section.settings.show_rating
+  assign image_radius = section.settings.image_border_radius
+
+  if collection != blank
+    assign product_list = collection.products
+  else
+    assign product_list = null
+  endif
+-%}
+
+<growmodo-featured-collection
+  class="growmodo-featured-collection growmodo-{{ section.id }}-container"
+  data-slides-per-view="{{ section.settings.slides_per_view_mobile }}"
+  data-space-between="{{ section.settings.space_between_mobile }}">
+  <div class="page-width">
+    {%- if section.settings.title != blank -%}
+      <div class="growmodo-featured-collection__header">
+        <h2 class="growmodo-featured-collection__title">{{ section.settings.title | escape }}</h2>
+      </div>
+    {%- endif -%}
+
+    {%- if product_list != blank and product_list.size > 0 -%}
+      <ul class="growmodo-featured-collection__grid" role="list">
+        {%- for product in product_list limit: products_to_show -%}
+          {%- assign lazy_load = false -%}
+          {%- if forloop.index > 2 -%}
+            {%- assign lazy_load = true -%}
+          {%- endif -%}
+          <li class="growmodo-featured-collection__grid-item">
+            {% render 'growmodo-card-product'
+              ,
+ card_product: product
+              ,
+ lazy_load: lazy_load
+              ,
+ show_rating: show_rating
+              ,
+ image_radius: image_radius
+            %}
+          </li>
+        {%- endfor -%}
+      </ul>
+
+      <div class="swiper growmodo-featured-collection__swiper">
+        <div class="swiper-wrapper">
+          {%- for product in product_list limit: products_to_show -%}
+            {%- assign lazy_load = false -%}
+            {%- if forloop.index > 1 -%}
+              {%- assign lazy_load = true -%}
+            {%- endif -%}
+            <div class="swiper-slide">
+              {% render 'growmodo-card-product'
+                ,
+ card_product: product
+                ,
+ lazy_load: lazy_load
+                ,
+ show_rating: show_rating
+                ,
+ image_radius: image_radius
+              %}
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- else -%}
+      <ul class="growmodo-featured-collection__grid" role="list">
+        {%- for i in (1..products_to_show) -%}
+          <li class="growmodo-featured-collection__grid-item">
+            <article class="growmodo-product-card">
+              <div class="growmodo-product-card__link">
+                <div class="growmodo-product-card__media" style="--growmodo-card-radius: {{ image_radius }}px;">
+                  {{ 'product-apparel-2' | placeholder_svg_tag: 'growmodo-product-card__placeholder' }}
+                </div>
+                <h3 class="growmodo-product-card__title">{{ 'onboarding.product_title' | t }}</h3>
+                {%- if show_rating -%}
+                  <div class="growmodo-product-card__rating">
+                    <div
+                      class="rating"
+                      role="img"
+                      aria-label="4.5 out of 5 stars">
+                      <span
+                        aria-hidden="true"
+                        class="rating-star"
+                        style="--rating: 4; --rating-max: 5; --rating-decimal: 0.5; --color-rating-star: #FFC633;"></span>
+                    </div>
+                    <span class="growmodo-product-card__rating-text">4.5/5</span>
+                  </div>
+                {%- endif -%}
+                <div class="growmodo-product-card__price-row">
+                  <span class="growmodo-product-card__price">{{ 1999 | money }}</span>
+                </div>
+              </div>
+            </article>
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+
+    {%- if section.settings.show_view_all and collection != blank -%}
+      <div class="{{ section.id }} growmodo-featured-collection__footer">
+        <a href="{{ collection.url }}" class="growmodo-featured-collection__view-all">
+          {{ section.settings.view_all_label | escape }}
+        </a>
+      </div>
+    {%- endif -%}
+  </div>
+</growmodo-featured-collection>
+
+{% schema %}
+  {
+    "name": "Growmodo Collection FT",
+    "tag": "section",
+    "class": "section-growmodo-featured-collection",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "NEW ARRIVALS"
+      },
+      {
+        "type": "collection",
+        "id": "collection",
+        "label": "Collection"
+      },
+      {
+        "type": "header",
+        "content": "Product grid"
+      },
+      {
+        "type": "range",
+        "id": "products_to_show",
+        "label": "Products to show",
+        "min": 2,
+        "max": 12,
+        "step": 1,
+        "default": 4
+      },
+      {
+        "type": "range",
+        "id": "columns_desktop",
+        "label": "Columns on desktop",
+        "min": 2,
+        "max": 4,
+        "step": 1,
+        "default": 4
+      },
+      {
+        "type": "header",
+        "content": "Mobile carousel"
+      },
+      {
+        "type": "range",
+        "id": "slides_per_view_mobile",
+        "label": "Slides per view",
+        "min": 100,
+        "max": 200,
+        "step": 5,
+        "default": 115,
+        "info": "115 = 1.15 (peek of next slide). 100 = 1, 200 = 2."
+      },
+      {
+        "type": "range",
+        "id": "space_between_mobile",
+        "label": "Space between slides",
+        "min": 0,
+        "max": 40,
+        "step": 4,
+        "unit": "px",
+        "default": 16
+      },
+      {
+        "type": "checkbox",
+        "id": "show_rating",
+        "label": "Show product rating",
+        "default": true,
+        "info": "Shows ratings when your store has product review metafields."
+      },
+      {
+        "type": "range",
+        "id": "image_border_radius",
+        "label": "Image corner radius",
+        "min": 0,
+        "max": 40,
+        "step": 2,
+        "unit": "px",
+        "default": 20
+      },
+      {
+        "type": "checkbox",
+        "id": "show_view_all",
+        "label": "Show \"View all\" button",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "view_all_label",
+        "label": "View all button label",
+        "default": "View All"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Growmodo Collection FT"
+      }
+    ]
+  }
+{% endschema %}

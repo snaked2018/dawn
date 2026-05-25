@@ -173,11 +173,59 @@
         "padding_top": 24,
         "padding_bottom": 24
       }
+    },
+    "growmodo_featured_collection_bJdG8g": {
+      "type": "growmodo-featured-collection",
+      "name": "Growmodo Collection FT",
+      "settings": {
+        "title": "NEW ARRIVALS",
+        "collection": "automated-collection",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "slides_per_view_mobile": 115,
+        "space_between_mobile": 16,
+        "show_rating": true,
+        "image_border_radius": 20,
+        "show_view_all": true,
+        "view_all_label": "View All"
+      }
+    },
+    "growmodo_spacing_border": {
+      "type": "growmodo-spacing-border",
+      "settings": {
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "padding_top": 48,
+        "padding_bottom": 48,
+        "show_border_top": false,
+        "show_border_bottom": true,
+        "border_width": 1,
+        "border_opacity": 10
+      }
+    },
+    "growmodo_featured_collection_G8Lk7J": {
+      "type": "growmodo-featured-collection",
+      "name": "Growmodo Collection FT",
+      "settings": {
+        "title": "TOP SELLING",
+        "collection": "automated-collection",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "slides_per_view_mobile": 115,
+        "space_between_mobile": 16,
+        "show_rating": true,
+        "image_border_radius": 20,
+        "show_view_all": true,
+        "view_all_label": "View All"
+      }
     }
   },
   "order": [
     "image_banner",
     "growmodo_hero_banner_8N8R4U",
-    "growmodo_logo_list"
+    "growmodo_logo_list",
+    "growmodo_featured_collection_bJdG8g",
+    "growmodo_spacing_border",
+    "growmodo_featured_collection_G8Lk7J"
   ]
 }
